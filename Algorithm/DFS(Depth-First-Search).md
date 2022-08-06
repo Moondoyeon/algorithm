@@ -92,13 +92,13 @@ let dfs = function (node) {
 
   let recursion = (obj) => {
     result.push(obj.value);
-  if(obj.children.length === 0) {
-    return;
-  } else {
-    for(let el of obj.children) {
-      recursion(el)
+    if(obj.children.length === 0) {
+      return;
+    } else {
+      for(let el of obj.children) {
+        recursion(el)
+      }
     }
-  }
   }
   recursion(node);
   return result;
