@@ -46,16 +46,20 @@ const rotatedArraySearch = function (rotated, target) {
 
     if (rotated[left] < rotated[middle]) {
       // 왼쪽 절반이 정렬되어 있는 상태
-      if (target < rotated[middle] && rotated[left] <= target) {
+      if ( rotated[left] <= target && target < rotated[middle] ) {
+        // 타겟이 왼쪽 정렬에 속하는 경우
         right = middle - 1;
       } else {
+        // 타겟이 왼쪽 정렬에 아예 속하지 않는 경우
         left = middle + 1;
       }
     } else {
       // 오른쪽 절반이 정렬되어 있는 상태
-      if (target <= rotated[right] && rotated[middle] < target) {
+      if ( rotated[middle] < target && target <= rotated[right] ) {
+        // 타겟이 오른쪽 정렬에 속하는 경우
         left = middle + 1;
       } else {
+        // 타겟이 오른쪽 정렬에 아예 속하지 않는 경우
         right = middle - 1;
       }
     }
@@ -64,3 +68,10 @@ const rotatedArraySearch = function (rotated, target) {
   return -1;
 };
 ```
+
+## 그림으로 이해하기
+### rotatedArraySearch([4, 5, 6, 0, 1, 2, 3], 2) 인 경우
+![](https://velog.velcdn.com/images/mmmdo21/post/1f374a0f-5515-4e1e-a94e-7a624354d0b8/image.png)
+
+### rotatedArraySearch([4, 5, 6, 0, 1, 2, 3], 6) 인 경우
+![](https://velog.velcdn.com/images/mmmdo21/post/21b1450b-c13d-4a31-b5a6-cd9d1c5ab290/image.png)
