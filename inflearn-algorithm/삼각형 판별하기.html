@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      //  삼각형 조건: 길이가 가장 긴 변의 길이 < 나머지 두 변 길이의 합
+      function solution(a, b, c) {
+        let answer = "YES";
+        // 길이가 가장 긴 변을 구한다.
+        // 나머지 두변을 합한 값보다 가장 긴 변의 길이가 크면, NO 리턴
+        let longest = a;
+        let sumOfTwo;
+        if (a < b) longest = b;
+        else if (b < c) longest = c;
+
+        if (a === longest) {
+          sumOfTwo = b + c;
+        } else if (b === longest) {
+          sumOfTwo = a + c;
+        } else if (c === longest) {
+          sumOfTwo = a + b;
+        }
+
+        if (longest >= sumOfTwo) {
+          answer = "NO";
+        }
+        return answer;
+      }
+
+      // let answer="YES", max=a;
+      // let sum=a+b+c;
+      // if(a<b) max=b;
+      // else if(b<c) max=c;
+      // if((sum-max) <= max ) answer="NO"
+      // return answer;
+
+      console.log(solution(13, 33, 17));
+    </script>
+  </body>
+</html>
