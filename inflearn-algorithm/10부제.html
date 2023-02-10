@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(day, arr) {
+        let answer = 0;
+
+        for (let element of arr) {
+          if (element % 10 === day) answer++;
+        }
+        return answer;
+      }
+
+      arr = [25, 23, 11, 47, 53, 17, 33];
+      console.log(solution(3, arr));
+
+      num % 10; // --> 5 일의 자리
+      ((num % 100) - (num % 10)) / 10; // --> 4 십의 자리
+      ((num % 1000) - (num % 100)) / 100; // --> 3 백의 자리
+      ((num % 10000) - (num % 1000)) / 1000; // --> 2 천의 자리
+      ((num % 100000) - (num % 10000)) / 10000; // --> 1 만의 자리
+    </script>
+  </body>
+</html>
