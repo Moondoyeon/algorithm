@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function mySolution(s) {
+        let UpperStr = s.toUpperCase();
+        let count = 0;
+        for (let i = 0; i < s.length; i++) {
+          if (UpperStr[i] === s[i]) count++;
+        }
+        return count;
+      }
+
+      let str = "KoreaTimeGood";
+      console.log(solution(str));
+
+      function solution(s) {
+        let answer = 0;
+        for (let x of s) {
+          //let num=x.charCodeAt();
+          // charCodeAt 문자를 아스키숫자로 바꿔주는 함수(대소문자구분)
+          // 대문자 - 65~90(A~Z), 소문자 - 97-122(a-z) : 26개
+          //if(num>=65 && num<=90) answer++;
+          if (x === x.toUpperCase()) answer++;
+        }
+
+        return answer;
+      }
+    </script>
+  </body>
+</html>
