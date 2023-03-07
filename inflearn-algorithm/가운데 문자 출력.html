@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function mySolution(s) {
+        let answer = "";
+        let idx = 0;
+        if (s.length % 2 !== 0) {
+          idx = Math.floor(s.length / 2);
+          answer = s[idx];
+        } else {
+          idx = Math.floor(s.length / 2) - 1;
+          answer = s[idx] + s[idx + 1];
+        }
+        return answer;
+      }
+
+      console.log(mySolution("study"));
+      console.log(mySolution("good"));
+
+      // solution
+      function solution(s) {
+        let answer;
+        let mid = Math.floor(s.length / 2); // 몫
+        if (s.length % 2 === 1) answer = s.substring(mid, mid + 1);
+        else answer = s.substring(mid - 1, mid + 1);
+        return answer;
+      }
+      console.log(solution("study"));
+
+      // String.substring()
+      const str = "Mozilla";
+      console.log(str.substring(1, 3));
+      // Expected output: "oz"
+      console.log(str.substring(2));
+      // Expected output: "zilla"
+    </script>
+  </body>
+</html>
