@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function mySolution(s) {
+        let answer = "";
+        for (let x of s) {
+          let num = x.charCodeAt();
+          if (num >= 97 && num <= 122) answer += x.toUpperCase();
+          if (num >= 65 && num <= 90) answer += x.toLowerCase();
+        }
+        return answer;
+      }
+
+      console.log(mySolution("StuDY"));
+
+      function solution(s) {
+        let answer = "";
+        for (let x of s) {
+          if (x === x.toLowerCase()) answer += x.toUpperCase();
+          else answer += x.toLowerCase();
+        }
+        return answer;
+      }
+      console.log(solution("StuDY"));
+    </script>
+  </body>
+</html>

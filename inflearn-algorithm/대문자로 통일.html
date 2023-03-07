@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function mySolution(s) {
+        let answer = "";
+        for (let el of s) {
+          answer = answer + el.toUpperCase();
+        }
+        return answer;
+      }
+
+      let str = "ItisTimeToStudy";
+      console.log(mySolution(str));
+
+      // 소문자인 것과 아닌 것 구별
+      // charCodeAt() 문자를 아스키숫자로 변환
+      // String.fromCharCode() 인자로 아스키숫자 전달시 대문자로 변환
+      function solution(s) {
+        let answer = "";
+        for (let x of s) {
+          let num = x.charCodeAt();
+          if (num >= 97 && num <= 122) answer += String.fromCharCode(num - 32);
+          answer += x;
+        }
+
+        return answer;
+      }
+
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
