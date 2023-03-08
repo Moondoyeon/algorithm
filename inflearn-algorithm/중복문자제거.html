@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function mySolution(s) {
+        let answer = "";
+        for (let x of s) {
+          if (!answer.includes(x)) answer += x;
+        }
+        return answer;
+      }
+      console.log(mySolution("ksekkset"));
+
+      function solution(s) {
+        let answer = "";
+        for (let i = 0; i < s.length; i++) {
+          // console.log(s[i], i, s.indexOf(s[i]))
+          if (s.indexOf(s[i]) === i) answer += s[i];
+        }
+        return answer;
+      }
+      console.log(solution("ksekkset"));
+      // string.indexOf() string에서 가장먼저발견되는 인자의 인덱스를 반환
+      // 따라서 뒤에 중복되는 문자가 있다면
+      // 'indexOf(중복문자)가 반환하는 인덱스'(먼저문자의인덱스)와 '중복문자의 인덱스'는 다르게됨
+    </script>
+  </body>
+</html>
