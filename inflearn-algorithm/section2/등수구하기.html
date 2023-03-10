@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function mySolution(arr) {
+        let sortedArr = arr.slice();
+        function compareNumbers(a, b) {
+          return b - a;
+        }
+        sortedArr.sort(compareNumbers);
+
+        let processed = [];
+        for (let i = 0; i < sortedArr.length; i++) {
+          if (sortedArr[i] !== sortedArr[i - 1]) {
+            processed.push([sortedArr[i], i + 1]);
+          }
+        }
+        // sorted [92,92,92,89,89]
+        // proceseed [[92,1],[89,4]]
+
+        let answer = [];
+        for (let i = 0; i < arr.length; i++) {
+          for (let j = 0; j < processed.length; j++) {
+            if (arr[i] === processed[j][0]) {
+              answer[i] = processed[j][1];
+            }
+          }
+        }
+        return answer;
+      }
+
+      let arr = [87, 89, 92, 100, 76];
+      let arr2 = [92, 89, 92, 89, 92];
+      let arr3 = [92, 92, 92, 100, 82];
+      console.log(mySolution(arr));
+      console.log(mySolution(arr2));
+      console.log(mySolution(arr3));
+
+      // 설명 good
+      function solution(arr) {
+        let n = arr.length;
+        let answer = Array.from({ length: n }, () => 1); // [1,1,1,1,1] 배열초기화
+        for (let i = 0; i < n; i++) {
+          for (let j = 0; j < n; j++) {
+            if (arr[i] < arr[j]) answer[i]++; // 나보다 다른애들점수가 높으면 내등수++
+          }
+        }
+        return answer;
+      }
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
