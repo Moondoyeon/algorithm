@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = 0;
+        let len = arr.length;
+        let dx = [-1, 0, 1, 0]; // 행 - up(위에행), right(같은행), down(아래행), left(같은행)
+        let dy = [0, 1, 0, -1]; // 열 - up(같은열), rigth(같은행, idx+1), down(같은열), left(같은행, idx-1)
+        for (let i = 0; i < len; i++) {
+          for (let j = 0; j < len; j++) {
+            let flag = 1;
+            for (let k = 0; k < 4; k++) {
+              let nx = i + dx[k];
+              let ny = j + dy[k];
+              if (nx >= 0 && nx < len && ny >= 0 && ny < len && arr[nx][ny] >= arr[i][j]) {
+                // 모서리는 검사에서 제외
+                flag = 0;
+                break;
+              }
+            }
+            if (flag) answer++;
+          }
+        }
+        return answer;
+      }
+      function mySolution(arr) {
+        let max = Number.MAX_SAFE_INTEGER;
+        let count = 0;
+        let top = (bottom = left = right = 0);
+        let len = arr.length;
+
+        for (let i = 0; i < len; i++) {
+          for (let j = 0; j < len; j++) {
+            // 모서리 요소 (상하좌우 요소가 2개인 요소)
+            if (i === 0 && j === 0) {
+              (top = 0), (left = 0), (right = arr[i][j + 1]), (bottom = arr[i + 1][j]);
+            } else if (i === 0 && j === len - 1) {
+              (top = 0), (right = 0), (bottom = arr[i + 1][j]), (left = arr[i][j - 1]);
+            } else if (i === len - 1 && j === 0) {
+              (top = arr[i - 1][j]), (right = arr[i][j + 1]), (bottom = 0), (left = 0);
+            } else if (i === len - 1 && j === len - 1) {
+              (top = arr[i - 1][j]), (right = 0), (bottom = 0), (left = arr[i][j - 1]);
+            }
+            // 상하좌우 요소가 3개인 요소들
+            else if (i === 0 && j > 0 && j < len - 1) {
+              (top = 0), (left = arr[i][j - 1]), (right = arr[i][j + 1]), (bottom = arr[i + 1][j]);
+            } else if (i > 0 && i < len - 1 && j === len - 1) {
+              (top = arr[i - 1][j]), (right = 0), (bottom = arr[i + 1][j]), (left = arr[i][j - 1]);
+            } else if (i === len - 1 && j > 0 && j < len - 1) {
+              (top = arr[i - 1][j]), (right = arr[i][j + 1]), (bottom = 0), (left = arr[i][j - 1]);
+            } else if (i > 0 && i < len - 1 && j === 0) {
+              (top = arr[i - 1][j]), (right = arr[i][j + 1]), (bottom = 0), (left = 0);
+            } else {
+              // 상하좌우 요소가 4개인 경우
+              top = arr[i - 1][j];
+              right = arr[i][j + 1];
+              bottom = arr[i + 1][j];
+              left = arr[i][j - 1];
+            }
+            let max = Math.max(arr[i][j], top, bottom, left, right);
+            if (max === arr[i][j]) count++;
+          }
+        }
+        return count;
+      }
+
+      let arr = [
+        [5, 3, 7, 2, 3],
+        [3, 7, 1, 6, 1],
+        [7, 2, 5, 3, 4],
+        [4, 3, 6, 4, 1],
+        [8, 7, 3, 5, 2],
+      ];
+      console.log(solution(arr));
+      console.log(mySolution(arr));
+    </script>
+  </body>
+</html>
