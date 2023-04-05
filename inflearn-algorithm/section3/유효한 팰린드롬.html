@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = "YES";
+        s = s.toLowerCase().replace(/[^a-z]/g, "");
+        if (s.split("").reverse().join("") !== s) return "NO";
+
+        return answer;
+      }
+
+      let str = "found7, time: study; Yduts; emit, 7Dnuof";
+      let str2 = "found7, 8Dnuop";
+      console.log(solution(str));
+      console.log(solution(str2));
+      // str2.split('') - ['f', 'o', 'u', 'n', 'd', 'd', 'n', 'u', 'o', 'p']
+      // str2.split('').reverse() - ['p', 'o', 'u', 'n', 'd', 'd', 'n', 'u', 'o', 'f']
+      // str2.split('').reverse().join('') - 'pounddnuof'
+    </script>
+  </body>
+</html>
