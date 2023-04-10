@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function mySolution(str) {
+        let answer = parseInt(str.toLowerCase().replace(/[a-z]/g, ""));
+        return answer;
+      }
+
+      let str = "g0en2T0s8eSoft";
+      console.log(mySolution(str));
+
+      function solution(str) {
+        let answer = "";
+        for (let x of str) {
+          if (!isNaN(x)) answer += x;
+        }
+        return parseInt(answer);
+      }
+      console.log(solution(str));
+
+      // parseInt(x)  = 앞의 문자열 0을 날림
+      // isNaN() = 문자형 숫자인지 분간해줌
+      // isNaN('0') // 매개변수가 문자형 숫자이면, 숫자로 취급하여 false 반환 : not a number가 아니다
+
+      function notParseInt(str2) {
+        let answer = 0;
+        for (let x of str2) {
+          if (!isNaN(x)) answer = answer * 10 + Number(x);
+        }
+        return answer;
+      }
+      console.log(notParseInt(str2));
+      let str2 = "g0en002T0s8eSoft";
+      // 0 = 0*10 + 0
+      // 0 = 0*10 + 0
+      // 0 = 0*10 + 0
+      // 2 = 0*10 + 2
+      // 20 = 2*10 + 0
+      // 208 = 20*10 + 8
+    </script>
+  </body>
+</html>
