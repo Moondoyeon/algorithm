@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function mySolution(n, arr) {
+        let max = Number.MIN_SAFE_INTEGER;
+        let maxChar = "";
+        for (let i = 0; i < n; i++) {
+          let sum = 0,
+            char = String(arr[i]);
+          for (let j = 0; j < char.length; j++) {
+            sum = sum + Number(char[j]);
+          }
+          if (sum > max) {
+            max = sum;
+            maxChar = char;
+          }
+          if (sum === max) {
+            if (Number(char) > Number(maxChar)) {
+              maxChar = char;
+            }
+          }
+          sum = 0;
+        }
+
+        return Number(maxChar);
+      }
+
+      let arr = [128, 460, 603, 40, 521, 137, 123];
+      console.log(mySolution(7, arr));
+    </script>
+  </body>
+</html>
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, arr) {
+        let answer,
+          max = Number.MIN_SAFE_INTEGER;
+        for (let x of arr) {
+          let sum = 0;
+          tmp = x; // 임시변수
+          while (tmp) {
+            sum += tmp % 10; // 1의자리 더하기 - (나머지) 8 2 1
+            tmp = Math.floor(tmp / 10); // 1의자리 없애기 - (몫) 12 1 0
+          }
+
+          if (sum > max) {
+            max = sum;
+            answer = x;
+          } else if (sum === max) {
+            if (x > answer) answer = x;
+          }
+        }
+        return answer;
+      }
+
+      let arr2 = [128, 460, 603, 40, 521, 137, 123];
+      console.log(solution(7, arr));
+
+      function solution2(n, arr) {
+        let answer,
+          max = Number.MIN_SAFE_INTEGER;
+        for (let x of arr) {
+          let sum = String(x)
+            .split("") // ['1', '2', '3']
+            .reduce((a, b) => a + Number(b), 0);
+          if (sum > max) {
+            max = sum;
+            answer = x;
+          } else if (sum === max) {
+            if (x > answer) answer = x;
+          }
+        }
+        return answer;
+      }
+    </script>
+  </body>
+</html>
