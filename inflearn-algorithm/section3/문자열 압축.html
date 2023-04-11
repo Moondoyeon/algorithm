@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function mySolution(s) {
+        let answer = "",
+          countArr = [],
+          charArr = [];
+        let count = 1;
+
+        for (let i = 0; i < s.length; i++) {
+          if (s[i] === s[i + 1]) {
+            count++;
+          } else if (s[i] !== s[i + 1]) {
+            countArr.push(count);
+            charArr.push(s[i]);
+            count = 1;
+          }
+        }
+
+        for (let i = 0; i < countArr.length; i++) {
+          if (countArr[i] === 1) answer = answer + charArr[i];
+          else answer = answer + charArr[i] + countArr[i];
+        }
+        return answer;
+      }
+
+      let str = "KKHSSSSSSSE";
+      console.log(mySolution(str));
+
+      function solution(s) {
+        let answer = "";
+        let cnt = 1;
+        s = s + " "; // 마지막 i에 대해 s[i](여기서는 E)와 s[i+1]를 비교할때, s[i+1]이 없으면 안되므로
+        for (let i = 0; i < s.length - 1; i++) {
+          // length-1 의미: 현재 s가 "KKHSSSSSSE " 이므로  s[length] === 공백, s[length-1] === 'E' 이다. 검사는 'E'까지만 해야하므로 legnth-1 써준다.
+          if (s[i] === s[i + 1]) cnt++;
+          else {
+            answer += s[i];
+            if (cnt > 1) answer += String(cnt);
+            cnt = 1;
+          }
+        }
+        return answer;
+      }
+    </script>
+  </body>
+</html>
