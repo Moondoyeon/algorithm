@@ -1,0 +1,85 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function isPrime(num) {
+        if (num <= 1) return false;
+        if (num === 2 || num === 3) return true;
+        if (num % 2 === 0) return false;
+
+        let limit = parseInt(Math.sqrt(num));
+        for (let i = 3; i <= limit; i += 2) {
+          if (num % i === 0) return false;
+        }
+        return true;
+      }
+      function mySolution(arr) {
+        let reverseArr = [];
+        for (let x of arr) {
+          let strX = String(x);
+          let reverseX = "";
+          for (let i = strX.length - 1; i >= 0; i--) {
+            reverseX += strX[i];
+          }
+          let reverseToNum = parseInt(reverseX);
+          if (isPrime(reverseToNum)) {
+            reverseArr.push(reverseToNum);
+          }
+          reverseX = "";
+        }
+        return reverseArr;
+      }
+
+      function mySolution2(arr) {
+        let reverseArr = arr
+          .map((el) => parseInt(String(el).split("").reverse().join("")))
+          .filter((reverseEl) => isPrime(reverseEl));
+
+        return reverseArr;
+      }
+      let arr = [32, 55, 62, 20, 250, 370, 200, 30, 100];
+
+      console.log(mySolution(arr));
+      console.log(mySolution2(arr), 2);
+    </script>
+  </body>
+</html>
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function isPrime(num) {
+        //소수 : 1과 자기자신만 약수인 숫자 (설명좋음)
+        if (num === 1) return false;
+        for (let i = 2; i <= parseInt(Math.sqrt(num)); i++) {
+          if (num % i === 0) return false;
+        }
+        return true;
+      }
+      function solution(arr) {
+        let answer = [];
+        for (let x of arr) {
+          let result = 0;
+          while (x) {
+            // ex) x : 307 => 30 => 3
+            let t = x % 10; // 일의 자리 빼기 => 7, 0, 3
+            result = result * 10 + t; // 7, 70, 703
+            x = parseInt(x / 10); // 몫 => 30, 3, 0 (뒤에서부터 백의자리 -> 십의자리 -> 일의자리)
+          }
+          if (isPrime(result)) answer.push(result);
+        }
+        return answer;
+      }
+
+      let arr2 = [32, 55, 62, 20, 250, 370, 200, 30, 100];
+      console.log(solution(arr2));
+    </script>
+  </body>
+</html>
