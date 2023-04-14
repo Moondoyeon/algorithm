@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function mySolution(m, product) {
+        let answer = 0;
+        let sortProduct = product.sort((a, b) => {
+          if (a[0] === b[0]) return a[1] - b[1];
+          else return a[0] - b[0];
+        });
+
+        let sum = 0;
+        let n = sortProduct.length;
+        for (let i = 0; i < n; i++) {
+          let elSum = sortProduct[i][0] + sortProduct[i][1];
+          if (sum < m) {
+            sum += elSum;
+            answer++;
+          }
+          if (sum >= m) {
+            sum -= elSum;
+            answer--;
+            if (sum + sortProduct[i][0] * 0.5 + sortProduct[i][1] <= m) {
+              sum += sortProduct[i][0] * 0.5 + sortProduct[i][1];
+
+              answer++;
+            }
+          }
+        }
+        console.log(sum);
+        return answer;
+      }
+
+      let arr = [
+        [6, 6],
+        [2, 2],
+        [4, 3],
+        [4, 5],
+        [10, 3],
+      ];
+      // 내 답은 반쪽짜리 답 ㅠ 예산내에 모든 상품 구매가능시, 마지막 상품을 50% 할인 받는 로직 넣기 어렵다.
+      console.log(mySolution(28, arr));
+      console.log(mySolution(50, arr));
+
+      // 완전탐색 - 모든 경우의 수를 검사해야 한다. 라는 생각이 들어야함
+      // 할인을 어떤 상품에 적용해야할지 기준이 없으므로, (상품한개할인 + 나머지비용)의 경우의수 검사해야함
+
+      // 1번할인총비용 + 나머지총비용 더하기 <= 28, count
+      // 2번할인총비용 + 나머지총비용 더하기 <= 28, count
+      // 3번할인총비용 + 나머지총비용 더하기 <= 28, count
+      // 4번할인총비용 + 나머지총비용 더하기 <= 28, count
+      // 5번할인총비용 + 나머지총비용 더하기 <= 28, count
+      // count가 가장 많은 것 return
+      function solution(m, product) {
+        let answer = 0;
+        let n = product.length;
+        product.sort((a, b) => a[0] + a[1] - (b[0] + b[1]));
+        for (let i = 0; i < n; i++) {
+          let moeny = m - (product[i][0] / 2 + product[i][1]);
+          let count = 1;
+          for (let j = 0; j < n; j++) {
+            if (j !== i && product[j][0] + product[j][1] > money) break; // 남은예산보다 남은더할상품비용이 크면서, n이 너무 많은 경우, 헛돌지 않게
+            if (j !== i && product[j][0] + product[j][1] <= money) {
+              moeny -= product[j][0] + product[j][1];
+              count++;
+            }
+            answer = Math.max(answer, count);
+          }
+        }
+        return answer;
+      }
+    </script>
+  </body>
+</html>
