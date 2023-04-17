@@ -11,8 +11,8 @@
         let n = arr1.length;
         let m = arr2.length;
         let p1 = (p2 = 0);
-        arr1.sort();
-        arr2.sort();
+        arr1.sort((a, b) => a - b); // 두자리수 이상의 수를 정렬시 함수를 꼭 줘야함
+        arr2.sort((a, b) => a - b);
         while (p1 < n && p2 < m) {
           if (arr1[p1] < arr2[p2]) p1++;
           if (arr1[p1] > arr2[p2]) p2++;
@@ -30,8 +30,8 @@
 
       function solution(arr1, arr2) {
         let answer = [];
-        arr1.sort();
-        arr2.sort();
+        arr1.sort((a, b) => a - b);
+        arr2.sort((a, b) => a - b);
         let p1 = (p2 = 0);
         while (p1 < arr1.length && p2 < arr2.length) {
           if (arr1[p1] === arr2[p2]) {
