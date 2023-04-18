@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function mySolution(m, arr) {
+        let count = 0;
+        // O(n^2) - 이중포문
+        for (let i = 0; i < arr.length; i++) {
+          let sum = arr[i];
+          for (let j = i + 1; j < arr.length; j++) {
+            if (sum === m) count++;
+            if (sum < m) sum += arr[j];
+            else break;
+          }
+        }
+
+        return count;
+      }
+
+      let a = [1, 2, 1, 3, 1, 1, 1, 2];
+      console.log(mySolution(6, a));
+
+      function solution(m, arr) {
+        // 투포인터 알고리즘 대표문제 - O(n) 포문1회
+        // lt : left | rt: right | sum : arr[lt] ~ arr[rt] 까지 더한값
+        // sum이 m보다 작을때, rt 증가시키면서 rt 더하기
+        // sum과 m이 크거나 같을때, lt 증가시키면서 lt 빼기
+        // rt가 수열을 다 탐색하면 검사도 끝
+
+        let answer = 0,
+          lt = 0,
+          sum = 0;
+        for (let rt = 0; rt < arr.length; rt++) {
+          sum += arr[rt]; // sum < m 일 경우 rt 더해주고
+          if (sum === m) answer++; // rt 하나 더한 다음 m과 같은지 확인
+          while (sum >= m) {
+            sum -= arr[lt++];
+            if (sum === m) answer++; // lt 하나 뺀 다음에도 m과 같은지 확인
+          }
+        }
+        return answer;
+      }
+      console.log(solution(6, a));
+    </script>
+  </body>
+</html>
