@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function mySolution(k, arr) {
+        let max = 0,
+          sum = 0,
+          lt = 0;
+
+        for (let i = 0; i < k; i++) sum += arr[i];
+        max = sum;
+
+        for (let rt = k; rt < arr.length; rt++) {
+          sum += arr[rt];
+          sum -= arr[lt++];
+          if (sum > max) max = sum;
+        }
+
+        return max;
+      }
+
+      let a = [12, 15, 11, 20, 25, 10, 20, 19, 13, 15];
+      console.log(mySolution(3, a));
+
+      function solution(k, arr) {
+        // arr.length * k => O(n^2), 이중포문
+        let answer,
+          sum = 0;
+        for (let i = 0; i < k; i++) sum += arr[i];
+        answer = sum;
+        for (let i = k; i < arr.length; i++) {
+          sum += arr[i] - arr[i - k]; // 슬라이딩 윈도우, 길이 k짜리인 창문을 우측으로 민다고 생각하면 됨.
+          answer = Math.max(answer, sum);
+        }
+        return answer;
+      }
+    </script>
+  </body>
+</html>
