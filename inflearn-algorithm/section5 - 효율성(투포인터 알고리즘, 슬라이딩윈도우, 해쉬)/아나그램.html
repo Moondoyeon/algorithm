@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function mySolution(str1, str2) {
+        let answer = "YES";
+        let hash1 = new Map();
+        let hash2 = new Map();
+
+        for (let i = 0; i < str1.length; i++) {
+          if (hash1.has(str1[i])) hash1.set(str1[i], hash1.get(str1[i]) + 1);
+          else hash1.set(str1[i], 1);
+          if (hash2.has(str2[i])) hash2.set(str2[i], hash2.get(str2[i]) + 1);
+          else hash2.set(str2[i], 1);
+        }
+
+        for (let [key] of hash1) {
+          if (hash1.get(key) !== hash2.get(key)) answer = "NO";
+        }
+        return answer;
+      }
+
+      let a = "AbaAeCe";
+      let b = "baeeACA";
+
+      let c = "abaCC";
+      let d = "Caaab";
+      console.log(mySolution(a, b));
+      console.log(mySolution(c, d));
+
+      function solution(str1, str2) {
+        let answer = "YES";
+        let sH = new Map();
+        for (let x of str1) {
+          if (sH.has(x)) sH.set(x, sH.get(x) + 1);
+          else sH.set(x, 1);
+        }
+        for (let x of str2) {
+          if (!sH.has(x) || sH.get(x) === 0) return "NO";
+          sH.set(x, sH.get(x) - 1); // 빼기로 갯수를 상쇄시킴
+          // ex) str1: aa, str2 :aaa
+          // 2-1:1 => 1-1:0 => str2의 3번째 a에 대해 -1하기전에 get(x)===0 이 되는 순간이 옴 <= 아나그램이 아니라는뜻
+          // str2에는 있는데, str1에는 더이상없는거
+        }
+        return answer;
+      }
+    </script>
+  </body>
+</html>
