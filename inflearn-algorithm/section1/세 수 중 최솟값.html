@@ -6,28 +6,35 @@
   <body>
     <script>
       function solution(a, b, c) {
-        let answer;
+        let sol = Number.MAX_SAFE_INTEGER;
+        if (a < b) sol = a;
+        else sol = b;
+        if (c < sol) sol = c;
+        return sol;
+
+        // let answer;
         //초안
-        if (a > b) {
-          if (c > b) {
-            answer = b;
-          }
-        } else if (a < b) {
-          if (a < c) {
-            answer = a;
-          }
-        }
-        if (b > c) {
-          if (a > c) {
-            answer = c;
-          }
-        }
-        return answer;
+        // if (a > b) {
+        //   if (c > b) {
+        //     answer = b;
+        //   }
+        // } else if (a < b) {
+        //   if (a < c) {
+        //     answer = a;
+        //   }
+        // }
+        // if (b > c) {
+        //   if (a > c) {
+        //     answer = c;
+        //   }
+        // }
+        // return answer;
       }
 
       // if(a<b) answer = a;
       // else answer = b;
       // if(c<answer) return c;
+
       // 변수에 저장해놓고 사용할 수 있다는 것! 코드 수 줄일 수 있다.
 
       console.log(solution(2, 5, 1));

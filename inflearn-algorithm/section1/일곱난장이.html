@@ -22,21 +22,21 @@
       let arr = [20, 7, 23, 19, 10, 15, 25, 8, 13];
       console.log(solution(arr));
 
-      const hSolution = (dwarf) => {
-        for (let I = 0; I < 10; I++) {
-          for (let j = 0; j < 10; j++) {
-            if (I === j) continue;
-            const arr = dwarf.filter((_, index) => index !== I && index !== j);
-            console.log(arr);
-            const sum = arr.reduce((prev, curr) => curr + prev, 0);
-            if (sum === 100) return arr;
-          }
-        }
-      };
+      // const hSolution = (dwarf) => {
+      //   for (let I = 0; I < 10; I++) {
+      //     for (let j = 0; j < 10; j++) {
+      //       if (I === j) continue;
+      //       const arr = dwarf.filter((_, index) => index !== I && index !== j);
+      //       console.log(arr, "h");
+      //       const sum = arr.reduce((prev, curr) => curr + prev, 0);
+      //       if (sum === 100) return arr;
+      //     }
+      //   }
+      // };
 
-      const input = [20, 7, 23, 19, 10, 15, 25, 8, 13];
+      // const input = [20, 7, 23, 19, 10, 15, 25, 8, 13];
 
-      console.log(hSolution(input));
+      // console.log(hSolution(input));
     </script>
   </body>
 </html>

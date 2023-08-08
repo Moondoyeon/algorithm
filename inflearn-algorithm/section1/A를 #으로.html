@@ -7,12 +7,9 @@
     <script>
       function solution(s) {
         let answer = "";
-        for (let i = 0; i < s.length; i++) {
-          if (s[i] === "A") {
-            answer += "#";
-          } else {
-            answer += s[i];
-          }
+        for (let x of s) {
+          if (x === "A") answer += "#";
+          else answer += x;
         }
         return answer;
       }
@@ -36,7 +33,7 @@
       let str2 = "BANANA";
       console.log(solution(str2));
 
-      // answer.replace(/A/g, "#");
+      // s.replace(/A/g, "#");
     </script>
   </body>
 </html>

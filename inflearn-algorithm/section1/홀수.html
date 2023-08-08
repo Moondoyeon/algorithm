@@ -29,11 +29,11 @@
       function solution(arr) {
         let answer = [];
         let sum = 0,
-          min = 1000;
-        for (let element of arr) {
-          if (element % 2 === 1) {
-            sum += element;
-            if (element < min) min = element;
+          min = Number.MAX_SAFE_INTEGER;
+        for (let x of arr) {
+          if (x % 2 === 1) {
+            sum += x;
+            if (x < min) min = x;
           }
         }
         answer.push(sum);
