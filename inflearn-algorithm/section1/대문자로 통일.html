@@ -5,10 +5,12 @@
   </head>
   <body>
     <script>
+      // 소문자인 것과 아닌 것 구별
       function mySolution(s) {
         let answer = "";
-        for (let el of s) {
-          answer = answer + el.toUpperCase();
+        for (let x of s) {
+          if (x === x.toLowerCase()) answer += x.toUpperCase();
+          else answer += x;
         }
         return answer;
       }
@@ -16,20 +18,17 @@
       let str = "ItisTimeToStudy";
       console.log(mySolution(str));
 
-      // 소문자인 것과 아닌 것 구별
-      // charCodeAt() 문자를 아스키숫자로 변환
-      // String.fromCharCode() 인자로 아스키숫자 전달시 대문자로 변환
+      // charCodeAt() : 문자를 아스키숫자로 변환
+      // String.fromCharCode() : 아스키숫자를 문자로 변환
       function solution(s) {
         let answer = "";
         for (let x of s) {
-          let num = x.charCodeAt();
-          if (num >= 97 && num <= 122) answer += String.fromCharCode(num - 32);
-          answer += x;
+          let num = x.charCodeAt(); // 아스키 숫자로 변환
+          if (num >= 97 && num <= 122) answer += String.fromCharCode(num - 32); // 소문자인 경우, 대문자로 변환
+          else answer += x;
         }
-
         return answer;
       }
-
       console.log(solution(str));
     </script>
   </body>

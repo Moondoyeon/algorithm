@@ -6,11 +6,11 @@
   <body>
     <script>
       function solution(s, t) {
-        let count = 0;
-        for (let i = 0; i < s.length; i++) {
-          if (s[i] === t) count++;
+        let answer = 0;
+        for (let x of s) {
+          if (x === t) answer++;
         }
-        return count;
+        return answer;
       }
 
       let str = "COMPUTERPROGRAMMING";

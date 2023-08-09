@@ -18,8 +18,7 @@
       console.log(mySolution(str));
 
       function solution(s) {
-        let answer;
-        answer = s.filter((v, i) => {
+        let answer = s.filter((v, i) => {
           // console.log(v, i, s.indexOf(v));
           if (s.indexOf(v) === i) return v;
         });

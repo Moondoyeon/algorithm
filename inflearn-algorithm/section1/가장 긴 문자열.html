@@ -7,15 +7,14 @@
     <script>
       function mySolution(s) {
         let longest = "";
-        for (let el of s) {
-          if (el.length > longest.length) longest = el;
+        for (let x of s) {
+          if (x.length > longest.length) longest = x;
         }
         return longest;
       }
       let str = ["teacher", "time", "student", "beautiful", "good"];
       console.log(mySolution(str));
 
-      // let max=Number.MIN_SAFE_INTEGER; 안전한 작은 정수
       function solution(s) {
         let answer = "",
           max = Number.MIN_SAFE_INTEGER;

@@ -20,13 +20,11 @@
       function solution(s) {
         let answer = 0;
         for (let x of s) {
-          //let num=x.charCodeAt();
-          // charCodeAt 문자를 아스키숫자로 바꿔주는 함수(대소문자구분)
+          //let num=x.charCodeAt(); // charCodeAt 문자를 아스키숫자로 바꿔주는 함수(대소문자구분)
           // 대문자 - 65~90(A~Z), 소문자 - 97-122(a-z) : 26개
           //if(num>=65 && num<=90) answer++;
           if (x === x.toUpperCase()) answer++;
         }
-
         return answer;
       }
     </script>
