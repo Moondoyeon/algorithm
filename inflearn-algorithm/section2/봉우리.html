@@ -7,16 +7,21 @@
     <script>
       function solution(arr) {
         let answer = 0;
-        let len = arr.length;
+        let n = arr.length;
         let dx = [-1, 0, 1, 0]; // 행 - up(위에행), right(같은행), down(아래행), left(같은행)
         let dy = [0, 1, 0, -1]; // 열 - up(같은열), rigth(같은행, idx+1), down(같은열), left(같은행, idx-1)
-        for (let i = 0; i < len; i++) {
-          for (let j = 0; j < len; j++) {
+        for (let i = 0; i < n; i++) {
+          for (let j = 0; j < n; j++) {
             let flag = 1;
             for (let k = 0; k < 4; k++) {
               let nx = i + dx[k];
               let ny = j + dy[k];
-              if (nx >= 0 && nx < len && ny >= 0 && ny < len && arr[nx][ny] >= arr[i][j]) {
+              // [i, j] | (arr[nx][ny]) <- arr[i][j]의 상하좌우
+              // --------------------------------------
+              // [0, 0] | (-1,0)(0,1)(1,0)(0,-1) 5 vs 3, 3
+              // [0, 1] | (-1,1)(0,2)(1,1)(0,0) 3 vs 7, 7, 5
+
+              if (nx >= 0 && nx < n && ny >= 0 && ny < n && arr[nx][ny] >= arr[i][j]) {
                 // 모서리는 검사에서 제외
                 flag = 0;
                 break;
@@ -27,6 +32,17 @@
         }
         return answer;
       }
+
+      let arr = [
+        [5, 3, 7, 2, 3],
+        [3, 7, 1, 6, 1],
+        [7, 2, 5, 3, 4],
+        [4, 3, 6, 4, 1],
+        [8, 7, 3, 5, 2],
+      ];
+      console.log(solution(arr));
+      console.log(mySolution(arr));
+
       function mySolution(arr) {
         let max = Number.MAX_SAFE_INTEGER;
         let count = 0;
@@ -67,16 +83,6 @@
         }
         return count;
       }
-
-      let arr = [
-        [5, 3, 7, 2, 3],
-        [3, 7, 1, 6, 1],
-        [7, 2, 5, 3, 4],
-        [4, 3, 6, 4, 1],
-        [8, 7, 3, 5, 2],
-      ];
-      console.log(solution(arr));
-      console.log(mySolution(arr));
     </script>
   </body>
 </html>

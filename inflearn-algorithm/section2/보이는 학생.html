@@ -6,12 +6,12 @@
   <body>
     <script>
       function mySolution(arr) {
-        let countArr = [],
-          tallest = Number.MIN_SAFE_INTEGER;
-        for (let i = 0; i < arr.length; i++) {
+        let countArr = [arr[0]],
+          tallest = arr[0];
+        for (let i = 1; i < arr.length; i++) {
           if (arr[i] > tallest) {
-            tallest = arr[i];
             countArr.push(arr[i]);
+            tallest = arr[i];
           }
         }
         return countArr.length;
