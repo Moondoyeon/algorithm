@@ -7,7 +7,7 @@
     <script>
       function solution(s, t) {
         let answer = [];
-        let p = 1000; // or Number.MAX_SAFE_INTEGER
+        let p = Number.MAX_SAFE_INTEGER;
         // p: 자기 왼쪽에 있는 t로부터 떨어진 거리
         for (let x of s) {
           if (x === t) {
@@ -20,8 +20,8 @@
         }
         // answer [1001,0,1,2,3,0,1,2,3,4,0]
 
-        // 자기 오른쪽에 있는 t로부터 떨어진 거리(p)와 비교
-        p = 1000;
+        // p: 자기 오른쪽에 있는 t로부터 떨어진 거리
+        p = Number.MAX_SAFE_INTEGER;
         for (let i = s.length - 1; i >= 0; i--) {
           if (s[i] === t) p = 0; // i=10, i=5, i=1
           else {
@@ -43,7 +43,7 @@
 
       let str = "teachermode";
       console.log(solution(str, "e"));
-      // 반복문을 우측한번, 좌측한번 돌림. 시간복잡도 O(n)
+      // 반복문을 우측한번, 좌측한번 돌림. 시간복잡도 O(2n)
     </script>
   </body>
 </html>
