@@ -40,7 +40,7 @@
 
         return reverseArr;
       }
-      let arr = [32, 55, 62, 20, 250, 370, 200, 30, 100];
+      let arr = [32, 55, 62, 20, 250, 370, 200, 30, 100, 307];
 
       console.log(mySolution(arr));
       console.log(mySolution2(arr), 2);
@@ -66,20 +66,19 @@
       function solution(arr) {
         let answer = [];
         for (let x of arr) {
-          let result = 0;
+          let reverse = 0;
           while (x) {
-            // ex) x : 307 => 30 => 3
-            let t = x % 10; // 일의 자리 빼기 => 7, 0, 3
-            result = result * 10 + t; // 7, 70, 703
+            let letter = x % 10; // ex) 307 일의 자리 빼기 => 7, 0, 3
+            reverse = reverse * 10 + letter; // 7, 70, 703
             x = parseInt(x / 10); // 몫 => 30, 3, 0 (뒤에서부터 백의자리 -> 십의자리 -> 일의자리)
           }
-          if (isPrime(result)) answer.push(result);
+          if (isPrime(reverse)) answer.push(reverse);
         }
         return answer;
       }
 
-      let arr2 = [32, 55, 62, 20, 250, 370, 200, 30, 100];
-      console.log(solution(arr2));
+      let arr2 = [32, 55, 62, 20, 250, 370, 200, 30, 100, 307];
+      console.log("sol", solution(arr2));
     </script>
   </body>
 </html>

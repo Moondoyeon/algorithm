@@ -6,7 +6,8 @@
   <body>
     <script>
       function solution(test) {
-        // 이 문제 풀때 중요한건, 완전탐색을 해야만 하는 문제인지 알아채는것 -> 해야한다면 4*4의 요소 하나 당 테스트 배열을 검사해야한다는 것
+        // 이 문제 풀때 중요한건, 완전탐색을 해야만 하는 문제인지 알아채는것
+        // -> 해야한다면 4*4의 요소 하나 당 테스트 배열을 검사해야한다는 것
 
         // i, j = 학생번호
         // 바깥 이중 포문(i,j) : (1,1)(1,2) ~ (4,3)(4,4) : 멘토멘티 경우의 수 : 16번
@@ -21,28 +22,28 @@
 
         // rankI = i학생의 등수 (0등,1등,2등,3등)
 
-        let answer = 0,
-          tmp = [];
-        m = test.length;
-        n = test[0].length;
+        let tmp = [];
+        m = test.length; // 테스트횟수(3)
+        n = test[0].length; // 학생수(4)
         for (let i = 1; i <= n; i++) {
+          // 1 2 3 4
           for (let j = 1; j <= n; j++) {
+            // 1 2 3 4
             let count = 0;
             for (let k = 0; k < m; k++) {
+              // 0 1 2
               let rankI = (rankJ = 0);
               for (let s = 0; s < n; s++) {
+                // 0 1 2 3
                 if (test[k][s] === i) rankI = s;
                 if (test[k][s] === j) rankJ = s;
               }
               if (rankI < rankJ) count++; // 학생I가 J보다 높은 등수 횟수
             }
-            if (count === m) {
-              tmp.push([i, j]);
-              answer++;
-            }
+            if (count === m) tmp.push([i, j]);
           }
         }
-        return answer;
+        return tmp.length;
       }
       let arr = [
         [3, 4, 1, 2],

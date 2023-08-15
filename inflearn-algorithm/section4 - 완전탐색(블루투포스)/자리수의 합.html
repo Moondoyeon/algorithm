@@ -71,7 +71,7 @@
           max = Number.MIN_SAFE_INTEGER;
         for (let x of arr) {
           let sum = String(x)
-            .split("") // ['1', '2', '3']
+            .split("") // ['1', '2', '8']
             .reduce((a, b) => a + Number(b), 0);
           if (sum > max) {
             max = sum;
