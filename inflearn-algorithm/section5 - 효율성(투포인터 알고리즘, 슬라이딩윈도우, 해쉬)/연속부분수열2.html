@@ -32,17 +32,15 @@
         //       131
         // 1개 2개 3개 2개 2개
 
-        let answer = 0;
-        lt = 0;
-        sum = 0;
+        let cnt = (lt = sum = 0);
         for (let rt = 0; rt < arr.length; rt++) {
           sum += arr[rt];
           while (sum > m) {
             sum -= arr[lt++];
           }
-          answer += rt - lt + 1;
+          cnt += rt - lt + 1;
         }
-        return answer;
+        return cnt;
       }
       console.log(mySolution2(5, a));
     </script>
