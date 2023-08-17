@@ -5,28 +5,6 @@
   </head>
   <body>
     <script>
-      function mySolution(s) {
-        let answer = "",
-          max = 0,
-          tmp = new Set();
-        for (let i = 0; i < s.length; i++) tmp.add(s[i]);
-        let a = Array.from(tmp).sort();
-
-        for (let i = 0; i < a.length; i++) {
-          let count = 0;
-          for (let x of s) if (a[i] === x) count++;
-
-          if (count > max) {
-            max = count;
-            answer = a[i];
-          }
-        }
-        return answer;
-      }
-
-      let str = "BACBACCACCBDEDE";
-      console.log(mySolution(str));
-
       function solution(s) {
         let answer;
         let sH = new Map();
@@ -36,6 +14,7 @@
         }
         let max = Number.MIN_SAFE_INTEGER;
         for (let [key, value] of sH) {
+          console.log(key, value);
           if (value > max) {
             max = value;
             answer = key;
@@ -43,6 +22,8 @@
         }
         return answer;
       }
+      let str = "BACBACCACCBDEDE";
+      console.log(solution(str));
     </script>
   </body>
 </html>

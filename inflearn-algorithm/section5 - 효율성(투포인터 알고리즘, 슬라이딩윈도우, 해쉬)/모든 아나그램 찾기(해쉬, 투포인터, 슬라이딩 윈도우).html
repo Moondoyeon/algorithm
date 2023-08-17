@@ -14,22 +14,30 @@
       }
       function solution(s, t) {
         let answer = 0;
-        let tH = new Map();
-        let sH = new Map();
+        let sH = (tH = new Map());
+
+        // [{a,1},{b,1},{c,1}]
         for (let x of t) {
           if (tH.has(x)) tH.set(x, tH.get(x) + 1);
           else tH.set(x, 1);
         }
-        let len = t.length - 1;
-        for (let i = 0; i < len; i++) {
+
+        // [{b,1},{a,1}]
+        for (let i = 0; i < t.length - 1; i++) {
           if (sH.has(s[i])) sH.set(s[i], sH.get(s[i]) + 1);
           else sH.set(s[i], 1);
         }
+
         let lt = 0;
-        for (let rt = len; rt < s.length; rt++) {
+        // rt: 2 ~ 7
+        for (let rt = t.length - 1; rt < s.length; rt++) {
+          // rt 번째 원소 추가
           if (sH.has(s[rt])) sH.set(s[rt], sH.get(s[rt]) + 1);
           else sH.set(s[rt], 1); // 추가한 원소 value 계산
+
           if (compareMaps(sH, tH)) answer++;
+
+          // lt 번째 원소 제거
           sH.set(s[lt], sH.get(s[lt]) - 1); // 윈도우의 가장 왼쪽 원소 value-1
           if (sH.get(s[lt]) === 0) sH.delete(s[lt]); // 왼쪽 원소 value-1하고나서 value===0 이면 윈도우에서 key를 아예 제거
           lt++;
@@ -37,9 +45,9 @@
         return answer;
       }
 
-      let a = "bacaAacba";
-      let b = "abc";
-      console.log(solution(a, b));
+      let s = "bacaAacba";
+      let t = "abc";
+      console.log(solution(s, t));
     </script>
   </body>
 </html>
