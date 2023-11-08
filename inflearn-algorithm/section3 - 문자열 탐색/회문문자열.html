@@ -23,6 +23,7 @@
       console.log(mySolution(str));
       console.log(solution(str));
 
+      // O(n과 logn 사이?)
       function solution(s) {
         let answer = "YES";
         s = s.toLowerCase();
@@ -37,6 +38,7 @@
         let answer = "YES";
         s = s.toLowerCase();
         if (s.split("").reverse().join("") !== s) answer = "NO";
+
         return answer;
       }
     </script>

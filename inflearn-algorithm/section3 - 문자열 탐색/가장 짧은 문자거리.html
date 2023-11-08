@@ -5,6 +5,7 @@
   </head>
   <body>
     <script>
+      // O(n)
       function solution(s, t) {
         let answer = [];
         let p = Number.MAX_SAFE_INTEGER;
@@ -43,7 +44,32 @@
 
       let str = "teachermode";
       console.log(solution(str, "e"));
-      // 반복문을 우측한번, 좌측한번 돌림. 시간복잡도 O(2n)
+      // 반복문을 우측한번, 좌측한번 돌림. 시간복잡도 O(2n) => O(n)
+
+      function sol(str, t) {
+        let answer = [];
+        let distance = Number.MAX_SAFE_INTEGER;
+
+        for (let i = 0; i < str.length; i++) {
+          if (str[i] === t) {
+            distance = 0;
+          } else {
+            distance++;
+          }
+          answer.push(distance);
+        }
+
+        distance = Number.MAX_SAFE_INTEGER;
+        for (let i = str.length - 1; i >= 0; i--) {
+          if (str[i] === t) {
+            distance = 0;
+          } else {
+            distance++;
+            answer[i] = Math.min(answer[i], distance);
+          }
+        }
+        return answer;
+      }
     </script>
   </body>
 </html>

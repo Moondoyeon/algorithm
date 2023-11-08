@@ -39,16 +39,17 @@
       console.log(mySolution(arr2));
       console.log(mySolution(arr3));
 
-      // 설명 good
+      // 설명 good// O(n^2)
       function solution(arr) {
         let n = arr.length;
-        let answer = Array.from({ length: n }, () => 1); // [1,1,1,1,1] 배열초기화
+        let 등수 = Array.from({ length: n }, () => 1); // [1,1,1,1,1] 배열초기화
         for (let i = 0; i < n; i++) {
           for (let j = 0; j < n; j++) {
-            if (arr[i] < arr[j]) answer[i]++; // 나보다 다른애들점수가 높으면 내등수++
+            if (i === j) continue;
+            if (arr[i] < arr[j]) 등수[i]++; // 나(i)보다 다른애들점수가 높으면 내등수++
           }
         }
-        return answer;
+        return 등수;
       }
       console.log(solution(arr));
     </script>

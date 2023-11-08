@@ -6,15 +6,16 @@
   <body>
     <script>
       function mySolution(s) {
-        let longest = "";
+        let answer = "";
         for (let x of s) {
-          if (x.length > longest.length) longest = x;
+          if (x.length > answer.length) answer = x;
         }
-        return longest;
+        return answer;
       }
       let str = ["teacher", "time", "student", "beautiful", "good"];
       console.log(mySolution(str));
 
+      // O(n)
       function solution(s) {
         let answer = "",
           max = Number.MIN_SAFE_INTEGER;

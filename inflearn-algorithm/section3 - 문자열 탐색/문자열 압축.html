@@ -35,11 +35,12 @@
         let cnt = 1;
         s = s + " "; // 마지막 문자에 대해 s[i](여기서는 E)와 s[i+1]를 비교할때, s[i+1]이 없으면 안되므로
         for (let i = 0; i < s.length - 1; i++) {
-          // length-1 의미: 현재 s가 "KKHSSSSSSE " 이므로
-          // s[length] === 공백, s[length-1] === 'E' 이다.
+          // length-1 의미: 현재 s가 "KKHSSSSSSE공백" 이므로
+          // s[length-1] === 공백, s[length-2] === 'E' 이다.
           // 검사는 'E'까지만 해야하므로 legnth-1 써준다.
-          if (s[i] === s[i + 1]) cnt++;
+          if (s[i] === s[i + 1]) cnt++; // 같으면 count만 추가
           else {
+            // 같지않으면 항상 문자와 count를 answer에 추가해줘야한다
             answer += s[i];
             if (cnt > 1) answer += String(cnt);
             cnt = 1;
@@ -47,6 +48,30 @@
         }
         return answer;
       }
+
+      function sol(s) {
+        let answer = "";
+        let count = 0;
+        let temp = [];
+
+        // O(n)
+        for (let i = 0; i < s.length; i++) {
+          if (s.indexOf(s[i]) === i) temp.push(s[i]); //KHSE
+        }
+        // O(n^2) 에 가까운 ..
+        for (let i = 0; i < temp.length; i++) {
+          count = 0;
+          for (let j = 0; j < s.length; j++) {
+            if (temp[i] === s[j]) {
+              count++;
+            }
+          }
+          if (count === 1) answer += temp[i];
+          if (count > 1) answer += temp[i] + count;
+        }
+        return answer;
+      }
+      console.log("sol", sol(str));
     </script>
   </body>
 </html>

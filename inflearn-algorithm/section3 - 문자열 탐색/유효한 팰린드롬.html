@@ -19,6 +19,20 @@
       // str2.split('') - ['f', 'o', 'u', 'n', 'd', 'd', 'n', 'u', 'o', 'p']
       // str2.split('').reverse() - ['p', 'o', 'u', 'n', 'd', 'd', 'n', 'u', 'o', 'f']
       // str2.split('').reverse().join('') - 'pounddnuof'
+
+      function sol(str) {
+        let answer = "YES";
+        str = str.toLowerCase().replace(/[^a-z]/g, "");
+        let mid = Math.floor(str.length / 2);
+        for (let i = 0; i < mid; i++) {
+          if (str[i] !== str[str.length - 1 - i]) answer = "NO";
+        }
+        // if (s.split("").reverse().join("") !== s) answer = "NO";
+
+        return answer;
+      }
+      console.log(sol(str));
+      console.log(sol(str2));
     </script>
   </body>
 </html>

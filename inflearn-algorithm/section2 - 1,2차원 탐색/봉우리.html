@@ -5,6 +5,7 @@
   </head>
   <body>
     <script>
+      // O(n^2)
       function solution(arr) {
         let answer = 0;
         let n = arr.length;
@@ -21,8 +22,15 @@
               // [0, 0] | (-1,0)(0,1)(1,0)(0,-1) 5 vs 3, 3
               // [0, 1] | (-1,1)(0,2)(1,1)(0,0) 3 vs 7, 7, 5
 
-              if (nx >= 0 && nx < n && ny >= 0 && ny < n && arr[nx][ny] >= arr[i][j]) {
-                // 모서리는 검사에서 제외
+              if (
+                // 모서리는 검사에서 제외, nx<0, ny<0, nx>=n, ny>=n 이면 검사 노노 // 범위내에 있어야만 검사대상!
+                nx >= 0 &&
+                ny >= 0 &&
+                nx < n &&
+                ny < n &&
+                // 앞의 조건 완수돼야(격자판위에있는녀석들에만) 아래조건식 검사
+                arr[nx][ny] >= arr[i][j]
+              ) {
                 flag = 0;
                 break;
               }
@@ -53,23 +61,47 @@
           for (let j = 0; j < len; j++) {
             // 모서리 요소 (상하좌우 요소가 2개인 요소)
             if (i === 0 && j === 0) {
-              (top = 0), (left = 0), (right = arr[i][j + 1]), (bottom = arr[i + 1][j]);
+              (top = 0),
+                (left = 0),
+                (right = arr[i][j + 1]),
+                (bottom = arr[i + 1][j]);
             } else if (i === 0 && j === len - 1) {
-              (top = 0), (right = 0), (bottom = arr[i + 1][j]), (left = arr[i][j - 1]);
+              (top = 0),
+                (right = 0),
+                (bottom = arr[i + 1][j]),
+                (left = arr[i][j - 1]);
             } else if (i === len - 1 && j === 0) {
-              (top = arr[i - 1][j]), (right = arr[i][j + 1]), (bottom = 0), (left = 0);
+              (top = arr[i - 1][j]),
+                (right = arr[i][j + 1]),
+                (bottom = 0),
+                (left = 0);
             } else if (i === len - 1 && j === len - 1) {
-              (top = arr[i - 1][j]), (right = 0), (bottom = 0), (left = arr[i][j - 1]);
+              (top = arr[i - 1][j]),
+                (right = 0),
+                (bottom = 0),
+                (left = arr[i][j - 1]);
             }
             // 상하좌우 요소가 3개인 요소들
             else if (i === 0 && j > 0 && j < len - 1) {
-              (top = 0), (left = arr[i][j - 1]), (right = arr[i][j + 1]), (bottom = arr[i + 1][j]);
+              (top = 0),
+                (left = arr[i][j - 1]),
+                (right = arr[i][j + 1]),
+                (bottom = arr[i + 1][j]);
             } else if (i > 0 && i < len - 1 && j === len - 1) {
-              (top = arr[i - 1][j]), (right = 0), (bottom = arr[i + 1][j]), (left = arr[i][j - 1]);
+              (top = arr[i - 1][j]),
+                (right = 0),
+                (bottom = arr[i + 1][j]),
+                (left = arr[i][j - 1]);
             } else if (i === len - 1 && j > 0 && j < len - 1) {
-              (top = arr[i - 1][j]), (right = arr[i][j + 1]), (bottom = 0), (left = arr[i][j - 1]);
+              (top = arr[i - 1][j]),
+                (right = arr[i][j + 1]),
+                (bottom = 0),
+                (left = arr[i][j - 1]);
             } else if (i > 0 && i < len - 1 && j === 0) {
-              (top = arr[i - 1][j]), (right = arr[i][j + 1]), (bottom = 0), (left = 0);
+              (top = arr[i - 1][j]),
+                (right = arr[i][j + 1]),
+                (bottom = 0),
+                (left = 0);
             } else {
               // 상하좌우 요소가 4개인 경우
               top = arr[i - 1][j];

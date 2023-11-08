@@ -5,6 +5,7 @@
   </head>
   <body>
     <script>
+      // O(n^4) 4중 반복문;
       function solution(test) {
         // 이 문제 풀때 중요한건, 완전탐색을 해야만 하는 문제인지 알아채는것
         // -> 해야한다면 4*4의 요소 하나 당 테스트 배열을 검사해야한다는 것
@@ -22,7 +23,7 @@
 
         // rankI = i학생의 등수 (0등,1등,2등,3등)
 
-        let tmp = [];
+        let answer = [];
         m = test.length; // 테스트횟수(3)
         n = test[0].length; // 학생수(4)
         for (let i = 1; i <= n; i++) {
@@ -35,15 +36,19 @@
               let rankI = (rankJ = 0);
               for (let s = 0; s < n; s++) {
                 // 0 1 2 3
+                // 첫번째 테스트의 (3,1):(i,j)학생들 조합을 평가한다면, rankI=> 0(등), rankJ => 2(등), count++
+                // 두번째 테스트의 (3,1):(i,j)학생들 조합을 평가한다면, rankI=> 1(등), rankJ => 3(등), count++
+                // 세번째 테스트의 (3,1):(i,j)학생들 조합을 평가한다면, rankI=> 0(등), rankJ => 1(등), count++
+                // 모든 테스트에서 i학생의 등수가 j학생보다 낮으므로 tmp에 푸쉬
                 if (test[k][s] === i) rankI = s;
                 if (test[k][s] === j) rankJ = s;
               }
               if (rankI < rankJ) count++; // 학생I가 J보다 높은 등수 횟수
             }
-            if (count === m) tmp.push([i, j]);
+            if (count === m) answer.push([i, j]); // 테스트횟수 와 i학생이 j학생보다 시험잘본 횟수가 같다면 멘토i-멘티j 지정!
           }
         }
-        return tmp.length;
+        return answer.length;
       }
       let arr = [
         [3, 4, 1, 2],
@@ -51,6 +56,37 @@
         [3, 1, 4, 2],
       ];
       console.log(solution(arr));
+      console.log(sol(arr));
+
+      function sol(test) {
+        let answer = [];
+        let students = test[0].length;
+        let tests = test.length;
+        // let loopCount = 0;
+        for (let i = 1; i <= students; i++) {
+          // 1 2 3 4
+          for (let j = 1; j <= students; j++) {
+            // 1 2 3 4
+            let count = 0;
+            for (let m = 0; m < tests; m++) {
+              // 0 1 2
+              let rankOfI = (rankOfJ = 0);
+              for (let k = 0; k < students; k++) {
+                // 0 1 2 3 (등수)
+                if (test[m][k] === i) rankOfI = k;
+                if (test[m][k] === j) rankOfJ = k;
+                // loopCount++;
+              }
+              if (rankOfI > rankOfJ) break; // 반복문횟수 192 => 136
+              if (rankOfI < rankOfJ) count++;
+            }
+            if (count === tests) answer.push([i, j]);
+          }
+        }
+        console.log("loopCount", loopCount);
+        console.log(answer);
+        return answer.length;
+      }
     </script>
   </body>
 </html>

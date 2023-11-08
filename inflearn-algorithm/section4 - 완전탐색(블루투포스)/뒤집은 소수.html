@@ -5,6 +5,7 @@
   </head>
   <body>
     <script>
+      // O(n^2 * logn)
       function isPrime(num) {
         if (num <= 1) return false;
         if (num === 2 || num === 3) return true;
@@ -32,7 +33,7 @@
         }
         return reverseArr;
       }
-
+      // O(n^2 * logn)
       function mySolution2(arr) {
         let reverseArr = arr
           .map((el) => parseInt(String(el).split("").reverse().join("")))
@@ -63,6 +64,7 @@
         }
         return true;
       }
+      // O(nlogn) = 반복문+while문
       function solution(arr) {
         let answer = [];
         for (let x of arr) {
@@ -76,9 +78,20 @@
         }
         return answer;
       }
+      // O(n^2 + logn) ?
+      function sol(arr) {
+        let answer = [];
+
+        for (let x of arr) {
+          let reversed = Number(String(x).split("").reverse().join("")); // 모든 요소에 수행
+          if (isPrime(reversed)) answer.push(reversed); // O(logn)?
+        }
+        return answer;
+      }
 
       let arr2 = [32, 55, 62, 20, 250, 370, 200, 30, 100, 307];
-      console.log("sol", solution(arr2));
+      console.log(solution(arr2));
+      console.log("sol", sol(arr2));
     </script>
   </body>
 </html>

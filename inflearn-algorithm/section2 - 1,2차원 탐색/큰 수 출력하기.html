@@ -5,18 +5,17 @@
   </head>
   <body>
     <script>
+      // O(n)
       function solution(arr) {
-        let answer = 0;
-        count = 0;
-        for (let x of arr) {
-          if (x === 1) {
-            count++;
-            answer += count;
-          } else count = 0;
+        let answer = [];
+        answer.push(arr[0]);
+        for (let i = 1; i < arr.length; i++) {
+          if (arr[i] > arr[i - 1]) answer.push(arr[i]);
         }
         return answer;
       }
-      let arr = [1, 0, 1, 1, 1, 0, 0, 1, 1, 0];
+
+      let arr = [7, 3, 9, 5, 6, 12];
       console.log(solution(arr));
     </script>
   </body>

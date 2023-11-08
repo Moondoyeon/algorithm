@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      // O(n)
+      function solution(arr) {
+        let answer = 0;
+        count = 0;
+        for (let x of arr) {
+          if (x === 1) {
+            count++;
+            answer += count;
+          } else {
+            count = 0; // x===0 이면 더하는 식 자체가 필요없음
+          }
+        }
+        return answer;
+      }
+      let arr = [1, 0, 1, 1, 1, 0, 0, 1, 1, 0];
+      console.log(solution(arr));
+
+      // O(n)
+      function mySol(arr) {
+        let answer = arr[0];
+        let count = 1;
+        for (let i = 1; i < arr.length; i++) {
+          if (arr[i] === 0) count = 0;
+          if (arr[i] === 1 && arr[i - 1] === 0) count = 1;
+          if (arr[i] === 1 && arr[i - 1] === 1) count++;
+
+          answer += count;
+        }
+        return answer;
+      }
+      console.log(mySol(arr));
+    </script>
+  </body>
+</html>

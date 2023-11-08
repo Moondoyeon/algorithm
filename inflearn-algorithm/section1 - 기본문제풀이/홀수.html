@@ -5,6 +5,7 @@
   </head>
   <body>
     <script>
+      // O(n)
       function mySolution(arr) {
         let sum = 0;
         let oddArray = [];
@@ -25,7 +26,7 @@
         return myAnswer;
       }
 
-      // solution
+      // O(n)
       function solution(arr) {
         let answer = [];
         let sum = 0,
@@ -36,7 +37,7 @@
             if (x < min) min = x;
           }
         }
-        answer.push(sum);
+        answer.push(sum); // O(1)
         answer.push(min);
         return answer;
       }

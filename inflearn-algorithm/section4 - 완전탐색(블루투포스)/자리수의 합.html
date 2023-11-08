@@ -5,6 +5,7 @@
   </head>
   <body>
     <script>
+      // O(n^2)
       function mySolution(n, arr) {
         let max = Number.MIN_SAFE_INTEGER;
         let maxChar = "";
@@ -32,22 +33,17 @@
       let arr = [128, 460, 603, 40, 521, 137, 123];
       console.log(mySolution(7, arr));
     </script>
-  </body>
-</html>
-
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>출력결과</title>
-  </head>
-  <body>
     <script>
+      let arr2 = [128, 460, 603, 40, 521, 137, 123];
+      // 반복문 O(N), while(logN)
+      // while문이 for문에 중첩되어 있으면 시간 복잡도 =>  O(nlogn)
       function solution(n, arr) {
         let answer,
           max = Number.MIN_SAFE_INTEGER;
+
         for (let x of arr) {
           let sum = 0;
-          tmp = x; // 임시변수
+          let tmp = x; // 임시변수
           while (tmp) {
             sum += tmp % 10; // 1의자리 더하기 - (나머지) 8 2 1
             tmp = Math.floor(tmp / 10); // 1의자리 없애기 - (몫) 12 1 0
@@ -63,8 +59,7 @@
         return answer;
       }
 
-      let arr2 = [128, 460, 603, 40, 521, 137, 123];
-      console.log(solution(7, arr));
+      console.log(solution(7, arr2));
 
       function solution2(n, arr) {
         let answer,
@@ -82,6 +77,32 @@
         }
         return answer;
       }
+    </script>
+    <script>
+      let arr3 = [128, 460, 603, 40, 521, 137, 123];
+
+      function sol(legnth, arr) {
+        let answer = Number.MIN_SAFE_INTEGER;
+        let max = Number.MIN_SAFE_INTEGER;
+
+        // O(n^2)
+        for (let num of arr) {
+          let sum = 0;
+          let str = String(num);
+
+          for (let x of str) {
+            sum += Number(x);
+          }
+
+          if (sum >= max) {
+            max = sum;
+            answer = Math.max(answer, num);
+          }
+        }
+
+        return answer;
+      }
+      console.log(sol(7, arr3));
     </script>
   </body>
 </html>

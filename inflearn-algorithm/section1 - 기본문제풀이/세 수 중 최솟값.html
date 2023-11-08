@@ -6,11 +6,12 @@
   <body>
     <script>
       function solution(a, b, c) {
-        let sol = Number.MAX_SAFE_INTEGER;
-        if (a < b) sol = a;
-        else sol = b;
-        if (c < sol) sol = c;
-        return sol;
+        // O(1)
+        let answer = Number.MAX_SAFE_INTEGER;
+        if (a < b) answer = a;
+        else answer = b;
+        if (c < answer) answer = c;
+        return answer;
 
         // let answer;
         //초안

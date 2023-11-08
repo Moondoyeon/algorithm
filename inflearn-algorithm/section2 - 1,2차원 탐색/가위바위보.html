@@ -11,10 +11,18 @@
           if (a[i] === b[i]) {
             answer += "D";
           }
-          if ((a[i] === 1 && b[i] === 3) || (a[i] === 2 && b[i] === 1) || (a[i] === 3 && b[i] === 2)) {
+          if (
+            (a[i] === 1 && b[i] === 3) ||
+            (a[i] === 2 && b[i] === 1) ||
+            (a[i] === 3 && b[i] === 2)
+          ) {
             answer += "A";
           }
-          if ((a[i] === 3 && b[i] === 1) || (a[i] === 1 && b[i] === 2) || (a[i] === 2 && b[i] === 3)) {
+          if (
+            (a[i] === 3 && b[i] === 1) ||
+            (a[i] === 1 && b[i] === 2) ||
+            (a[i] === 2 && b[i] === 3)
+          ) {
             answer += "B";
           }
         }
@@ -29,10 +37,13 @@
         let answer = "";
         for (let i = 0; i < a.length; i++) {
           if (a[i] === b[i]) answer += "D";
-          else if (a[i] === 1 && b[i] === 3) answer += "A"; // 한쪽이 명확히 이기는 케이스
-          else if (a[i] === 2 && b[i] === 1) answer += "A";
-          else if (a[i] === 3 && b[i] === 2) answer += "A";
-          else answer += "B"; // 예외
+          else if (a[i] === 1 && b[i] === 3) {
+            answer += "A"; // 한쪽이 명확히 이기는 케이스
+          } else if (a[i] === 2 && b[i] === 1) {
+            answer += "A";
+          } else if (a[i] === 3 && b[i] === 2) {
+            answer += "A";
+          } else answer += "B"; // 예외
         }
         return answer;
       }

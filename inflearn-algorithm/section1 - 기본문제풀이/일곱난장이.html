@@ -5,12 +5,15 @@
   </head>
   <body>
     <script>
+      // O(n^2) ? n이 9로 고정돼있긴함
       function solution(arr) {
         let answer = arr;
         let sum = answer.reduce((a, b) => a + b, 0);
         for (let i = 0; i < 8; i++) {
+          // idx 0부터
           for (let j = i + 1; j < 9; j++) {
-            if (sum - (answer[i] + answer[j]) == 100) {
+            // idx  1부터
+            if (sum - (answer[i] + answer[j]) === 100) {
               answer.splice(j, 1);
               answer.splice(i, 1);
             }
