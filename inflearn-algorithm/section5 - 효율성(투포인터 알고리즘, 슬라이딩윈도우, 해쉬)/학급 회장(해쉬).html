@@ -8,12 +8,14 @@
       function solution(s) {
         let answer;
         let sH = new Map();
+        console.log(sH);
         for (let x of s) {
           if (sH.has(x)) sH.set(x, sH.get(x) + 1);
           else sH.set(x, 1);
         }
         let max = Number.MIN_SAFE_INTEGER;
         for (let [key, value] of sH) {
+          // 왜 of => for...of 문은 반복가능한 객체(Array, Map, Set, String, TypedArray, arguments 객체 등)를 반복하는 문법
           console.log(key, value);
           if (value > max) {
             max = value;

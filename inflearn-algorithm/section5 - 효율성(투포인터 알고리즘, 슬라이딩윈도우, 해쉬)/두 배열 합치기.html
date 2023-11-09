@@ -19,11 +19,12 @@
         let p1 = (p2 = 0); // idx
         while (p1 < n && p2 < m) {
           // arr1, arr2 원소 크기 비교 후 작은거 푸쉬
-          if (arr1[p1] <= arr2[p2]) answer.push(arr1[p1++]); // arr1[p1++] : 후치연산자, arr1[p1] 푸쉬 후 p1++
+          if (arr1[p1] <= arr2[p2]) answer.push(arr1[p1++]);
+          // arr1[p1++] : 후치연산자, arr1[p1] 푸쉬 후 p1++
           else answer.push(arr2[p2++]);
         }
         while (p1 < n) answer.push(arr1[p1++]); // arr2의 원소를 answer에 다 푸쉬 후, 아직 남은 arr1 원소가 있다면 푸쉬
-        while (p2 < m) answer.push(arr2[p2++]); // arr1의 원소를 answer에 다 푸쉬 후, 아직 남은 arr2 원소가 있다면 푸쉬
+        while (p2 < m) answer.push(arr2[p2++]); // arr1의 원소를 answer에 다 푸쉬 후, 아직 남은 arr2 원소가 있다면 푸쉬 6 7 9
         return answer;
       }
 
@@ -31,6 +32,24 @@
       let b = [2, 3, 6, 7, 9];
       console.log(mySolution(a, b));
       console.log(solution(a, b));
+
+      function sol(arr1, arr2) {
+        let answer = [];
+        let n = arr1.length;
+        let m = arr2.length;
+        let idx1 = (idx2 = 0);
+
+        while (idx1 < n && idx2 < m) {
+          if (arr1[idx1] <= arr2[idx2]) answer.push(arr2[idx1++]);
+          else answer.push(arr2[idx2++]);
+        }
+        while (idx2 < m) answer.push(arr2[idx2++]);
+        while (idx1 < m) answer.push(arr1[idx1++]);
+        return answer;
+      }
+      function sol2(arr1, arr2) {
+        return arr1.concat(arr2).sort((a, b) => a - b);
+      }
     </script>
   </body>
 </html>

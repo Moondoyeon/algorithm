@@ -12,6 +12,9 @@
         }
         return true;
       }
+      // 해시 구축 O(n), 해시 검색 O(1)
+      // 투포인터스 O(n)
+      // 슬라이딩 윈도우 O(n)
       function solution(s, t) {
         let answer = 0;
         let sH = (tH = new Map());
@@ -22,15 +25,18 @@
           else tH.set(x, 1);
         }
 
+        // 슬라이딩 윈도우
         // [{b,1},{a,1}]
         for (let i = 0; i < t.length - 1; i++) {
           if (sH.has(s[i])) sH.set(s[i], sH.get(s[i]) + 1);
           else sH.set(s[i], 1);
         }
 
+        // 투포인터스
         let lt = 0;
-        // rt: 2 ~ 7
+        // rt: 2 ~ 8
         for (let rt = t.length - 1; rt < s.length; rt++) {
+          console.log(rt);
           // rt 번째 원소 추가
           if (sH.has(s[rt])) sH.set(s[rt], sH.get(s[rt]) + 1);
           else sH.set(s[rt], 1); // 추가한 원소 value 계산
@@ -47,7 +53,43 @@
 
       let s = "bacaAacba";
       let t = "abc";
-      console.log(solution(s, t));
+      function isSameHash(sH, tH) {
+        if (sH.size !== tH.size) return false;
+        for (let [key, val] of tH) {
+          if (!sH.has(key) || sH.get(key) !== val) return false;
+        }
+        return true;
+      }
+
+      function sol(s, t) {
+        let answer = 0;
+        let sH = (tH = new Map());
+
+        for (let x of t) {
+          if (tH.has(x)) tH.set(x, tH.get(x) + 1);
+          else tH.set(x, 1);
+        }
+
+        for (let i = 0; i < t.length - 1; i++) {
+          if (sH.has(s[i])) sH.set(s[i], sH.get(s[i]) + 1);
+          else sH.set(s[i], 1);
+        }
+
+        let lt = 0;
+        for (let rt = t.length - 1; rt < s.length; rt++) {
+          if (sH.has(s[rt])) sH.set(s[rt], sH.get(s[rt]) + 1);
+          else sH.set(s[rt], 1);
+
+          if (isSameHash(sH, tH)) answer++;
+
+          sH.set(s[lt], sH.get(s[lt]) - 1);
+          if (sH.get(s[lt]) === 0) sH.delete(s[lt]);
+          lt++;
+        }
+        return answer;
+      }
+
+      console.log("sol", sol(s, t));
     </script>
   </body>
 </html>

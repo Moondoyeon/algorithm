@@ -47,6 +47,29 @@
         }
         return answer;
       }
+
+      function sol(str1, str2) {
+        let answer = "YES";
+        const hash1 = cal(str1);
+        const hash2 = cal(str2);
+
+        for (let [key, val] of hash1) {
+          if (!hash2.has(key)) answer = "NO";
+          if (hash2.get(key) !== val) answer = "NO";
+        }
+        return answer;
+      }
+
+      function cal(str) {
+        let hash = new Map();
+        for (let x of str) {
+          if (hash.has(x)) hash.set(x, hash.get(x) + 1);
+          else hash.set(x, 1);
+        }
+        return hash;
+      }
+      console.log("sol", sol(a, b));
+      console.log("sol", sol(c, d));
     </script>
   </body>
 </html>
