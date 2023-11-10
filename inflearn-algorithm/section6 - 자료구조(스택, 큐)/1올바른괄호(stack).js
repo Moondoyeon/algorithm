@@ -37,3 +37,24 @@ function solution(s) {
 console.log(solution(a));
 console.log(solution(b));
 console.log(solution(c));
+
+function sol(s) {
+  let answer = "YES";
+  let stack = [];
+
+  for (let x of s) {
+    if (x === "(") stack.push(x);
+    else {
+      if (stack.length === 0) return "NO";
+      else stack.pop();
+    }
+  }
+
+  if (stack.length === 0) answer = "YES";
+  if (stack.length) answer = "NO";
+
+  return answer;
+}
+console.log("sol", sol(a));
+console.log("sol", sol(b));
+console.log("sol", sol(c));

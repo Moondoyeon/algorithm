@@ -12,4 +12,22 @@ function solution(s) {
   return answer;
 }
 let str = "(A(BC)D)EF(G(H)(IJ)K)LM(N)";
-console.log(solution(str));
+// console.log(solution(str));
+
+function sol(s) {
+  let answer = "";
+  let stack = [];
+
+  for (let x of s) {
+    if (x !== ")") stack.push(x);
+    else {
+      const lastOpenBraket = stack.lastIndexOf("(");
+      // console.log(stack);
+      // console.log(stack.slice(0, lastOpenBraket));
+      stack = stack.slice(0, lastOpenBraket);
+    }
+  }
+  answer = stack.join("");
+  return answer;
+}
+console.log("sol", sol(str));

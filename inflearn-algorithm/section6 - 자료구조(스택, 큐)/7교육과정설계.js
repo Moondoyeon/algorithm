@@ -21,6 +21,7 @@ function solution(need, plan) {
       if (queue.shift() !== x) answer = "NO";
     }
   }
+
   if (queue.length > 0) answer = "NO"; // 필수과목을 계획에서 빠뜨린 경우
   return answer;
 }
@@ -28,7 +29,24 @@ function solution(need, plan) {
 let a = "CBA";
 let b = "CBDAGE"; // "CBA"
 let c = "BCDAGE"; // "BCA"
-console.log(mySolution(a, b));
-console.log(mySolution(a, c));
 console.log(solution(a, b));
 console.log(solution(a, c));
+
+console.log(sol(a, b));
+console.log(sol(a, c));
+function sol(need, plan) {
+  let answer = "YES";
+  let queue = "";
+
+  for (let x of plan) {
+    for (let j = 0; j < need.length; j++) {
+      if (x === need[j]) {
+        queue += x;
+        break;
+      }
+    }
+  }
+
+  if (queue !== need || need.length !== queue.length) answer = "NO";
+  return answer;
+}

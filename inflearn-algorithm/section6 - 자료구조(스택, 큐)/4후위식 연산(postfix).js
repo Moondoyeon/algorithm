@@ -18,3 +18,5 @@ function solution(s) {
 
 let str = "352+*9-";
 console.log(solution(str));
+// 우리가 일반적으로 사용하는 사칙연산은 피연산자(숫자)사이에 연산자(+-*/)가 들어가는 형태로 '중위표기식(infix expression)'
+// 후위표기식은 피연산자가 먼저쓰이고, 그 뒤로 연산자가 나오는 형태

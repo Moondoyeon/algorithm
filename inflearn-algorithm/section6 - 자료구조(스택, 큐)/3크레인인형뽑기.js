@@ -2,6 +2,7 @@ function solution(board, moves) {
   let answer = 0;
   let stack = [];
 
+  // 이중포문아님?
   moves.forEach((position) => {
     // 열
     for (let i = 0; i < board.length; i++) {
@@ -30,5 +31,43 @@ let a = [
   [3, 5, 1, 3, 1],
 ];
 
+let after = [
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 5, 0, 0],
+  [0, 2, 4, 0, 2],
+  [0, 5, 1, 3, 1],
+];
+
 let b = [1, 5, 3, 5, 1, 2, 1, 4]; //4 3 1 1 3 2 x 3 => stack =[4,2,3]
-console.log(solution(a, b));
+
+// console.log(solution(a, b));
+// O(N^2)
+function sol(board, moves) {
+  let answer = 0;
+  let basket = [];
+
+  for (let i = 0; i < moves.length; i++) {
+    for (let j = 0; j < board.length; j++) {
+      let col = moves[i] - 1; // 열정보
+      if (board[j][col] !== 0) {
+        pushOrPop(board[j][col]);
+        board[j][col] = 0;
+        break;
+      }
+    }
+  }
+
+  function pushOrPop(doll) {
+    if (basket.length && basket[basket.length - 1] === doll) {
+      basket.pop();
+      answer += 2;
+    } else {
+      basket.push(doll);
+    }
+  }
+
+  return answer;
+}
+
+console.log("sol", sol(a, b));

@@ -9,4 +9,17 @@ function solution(n, k) {
   return answer;
 }
 
-console.log(solution(8, 3));
+// console.log(solution(8, 3));
+function sol(n, k) {
+  let answer;
+  let queue = Array.from({ length: n }, (v, idx) => idx + 1);
+
+  while (queue.length > 1) {
+    for (let i = 1; i < k; i++) queue.push(queue.shift());
+    queue.shift();
+    // if (queue.length === 1) answer = queue.shift();
+  }
+  answer = queue.shift();
+  return answer;
+}
+console.log("sol", sol(8, 3));
