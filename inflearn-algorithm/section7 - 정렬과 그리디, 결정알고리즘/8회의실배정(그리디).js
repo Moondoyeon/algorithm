@@ -3,6 +3,7 @@ function solution(meeting) {
     if (a[1] === b[1]) return a[0] - b[0];
     else return a[1] - b[1]; // 끝나는 시간 오름차순 정렬
   });
+
   let answer = 0;
   let endTime = 0;
   for (let x of meeting) {

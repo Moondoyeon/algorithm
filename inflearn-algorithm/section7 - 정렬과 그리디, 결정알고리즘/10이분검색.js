@@ -25,7 +25,8 @@ function solution(target, arr) {
     if (arr[mid] === target) {
       answer = mid + 1;
       break;
-    } else if (arr[mid] > target) right = mid - 1; // 한번 비교에 의해서 검색범위가 절반으로 줄어듦
+    } else if (arr[mid] > target)
+      right = mid - 1; // 한번 비교에 의해서 검색범위가 절반으로 줄어듦
     else left = mid + 1;
   }
   return answer;
